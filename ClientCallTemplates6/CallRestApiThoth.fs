@@ -27,7 +27,7 @@ module CallRestApiThoth =
 
         async 
             {
-                let apiKeyTest = "test74764"
+                let apiKeyTest = ""
                 let url = "http://natalie.somee.com/api/" // ensure trailing slash if required
             
                 let! response = 
