@@ -20,6 +20,7 @@ open MyFsToolkit.Builders
 module CallRestApiThoth =
         
     let private apiKey = "my-api-key"
+    let private apiKeyTest = ""
 
     //************************* GET ****************************
 
@@ -27,8 +28,7 @@ module CallRestApiThoth =
 
         async 
             {
-                let apiKeyTest = ""
-                let url = "http://natalie.somee.com/api/" // ensure trailing slash if required
+                let url = "http://kodis.somee.com/api/" // ensure trailing slash if required
             
                 let! response = 
                     http 
@@ -188,9 +188,8 @@ module CallRestApiThoth =
 
         async
             {
-                let path = "CanopyResults/canopy_results.json"
-                let apiKeyTest = "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"
-                let url = "http://natalie.somee.com/api/" 
+                let path = "CanopyResults/canopy_results.json"                
+                let url = "http://kodis.somee.com/api/" 
                                                   
                 let thothJsonPayload =                    
                     match getJsonString path with
@@ -212,17 +211,13 @@ module CallRestApiThoth =
                     -> 
                      let! jsonMsg = Response.toTextAsync response
 
-                     printfn "Received JSON response: %s" jsonMsg
-
-                     return //{ Message = jsonMsg }                           
+                     return                          
                          Decode.fromString decoderPutTest jsonMsg   
                          |> function
                              | Ok value  -> value   
-                             | Error err -> { Message = err }   
-                           
-                              
+                             | Error err -> { Message1 = String.Empty; Message2 = err }      
                 | _ -> 
-                     return { Message = sprintf "Request failed with status code %d" (int response.statusCode) }                                           
+                     return { Message1 = String.Empty; Message2 = sprintf "Request failed with status code %d" (int response.statusCode) }                                           
             } 
 
     let putToRestApi () =
@@ -273,7 +268,8 @@ module CallRestApiThoth =
         printfn "*********************** PUT **********************************************"
 
         let response = putToRestApiTest () |> Async.RunSynchronously
-        printfn "Message1 %s" response.Message
+        printfn "Message1 %s" response.Message1
+        printfn "Message2 %s" response.Message2
 
         printfn "*********************** GET **********************************************"
 

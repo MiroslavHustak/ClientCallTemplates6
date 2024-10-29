@@ -49,7 +49,8 @@ type UserResponsePutThoth =
 
 type ResponsePut = 
     {
-        Message : string
+        Message1 : string
+        Message2 : string
     }
 
 module ThothDeserializationCoders =   
@@ -109,6 +110,7 @@ module ThothDeserializationCoders =
         Decode.object
             (fun get ->
                       {
-                          Message = get.Required.Field "Message" Decode.string
+                          Message1 = get.Required.Field "Message1" Decode.string
+                          Message2 = get.Required.Field "Message2" Decode.string
                       }
             )
