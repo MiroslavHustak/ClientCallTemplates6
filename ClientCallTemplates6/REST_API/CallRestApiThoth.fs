@@ -20,7 +20,7 @@ open MyFsToolkit.Builders
 module CallRestApiThoth =
         
     let private apiKey = "my-api-key"
-    let private apiKeyTest = ""
+    let private apiKeyTest = "test74764"
 
     //************************* GET ****************************
 
@@ -50,8 +50,8 @@ module CallRestApiThoth =
                                           value                                
                              | Error err ->
                                           { 
-                                              GetLinks  = String.Empty
-                                              Message  = err
+                                              GetLinks = String.Empty
+                                              Message = err
                                           } 
                 | _ -> 
                      return 
